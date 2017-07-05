@@ -1,0 +1,159 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2835", "brcm,bcm2708", "brcm,bcm2709";
+
+    fragment@0 {
+        target = <&gpio>;
+        __overlay__ {
+            pistomachine_pin: pistomachine_pin {
+                brcm,pins = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 16 17 18 19 20 21 22 23 24 25 26>; 
+                brcm,function = <0>;
+                brcm,pull = <2>;
+            };
+        };
+    };
+
+    fragment@1 {
+    target-path = "/soc";
+        __overlay__ {
+            pistomachine: pistomachine {
+                compatible = "gpio-keys";
+                #address-cells = <1>;
+                #size-cells = <0>;
+                pinctrl-names = "default";
+                pinctrl-0 = <&pistomachine_pin>;
+                status = "okay";
+
+                button@0 {
+                    label = "pistomachine key 0";
+                    linux,code = <100>;
+                    gpios = <&gpio 0 1>;
+                };
+                button@1 {
+                    label = "pistomachine key 1";
+                    linux,code = <1>;
+                    gpios = <&gpio 1 1>;
+                };
+                button@2 {
+                    label = "pistomachine key 2";
+                    linux,code = <2>;
+                    gpios = <&gpio 2 1>;
+                };
+                button@3 {
+                    label = "pistomachine key 3";
+                    linux,code = <3>;
+                    gpios = <&gpio 3 1>;
+                };
+                button@4 {
+                    label = "pistomachine key 4";
+                    linux,code = <4>;
+                    gpios = <&gpio 4 1>;
+                };
+                button@5 {
+                    label = "pistomachine key 5";
+                    linux,code = <5>;
+                    gpios = <&gpio 5 1>;
+                };
+                button@6 {
+                    label = "pistomachine key 6";
+                    linux,code = <6>;
+                    gpios = <&gpio 6 1>;
+                };
+                button@7 {
+                    label = "pistomachine key 7";
+                    linux,code = <7>;
+                    gpios = <&gpio 7 1>;
+                };
+                button@8 {
+                    label = "pistomachine key 8";
+                    linux,code = <8>;
+                    gpios = <&gpio 8 1>;
+                };
+                button@9 {
+                    label = "pistomachine key 9";
+                    linux,code = <9>;
+                    gpios = <&gpio 9 1>;
+                };
+                button@10 {
+                    label = "pistomachine key 10";
+                    linux,code = <10>;
+                    gpios = <&gpio 10 1>;
+                };
+                button@11 {
+                    label = "pistomachine key 11";
+                    linux,code = <11>;
+                    gpios = <&gpio 11 1>;
+                };
+                button@12 {
+                    label = "pistomachine key 12";
+                    linux,code = <12>;
+                    gpios = <&gpio 12 1>;
+                };
+                button@13 {
+                    label = "pistomachine key 13";
+                    linux,code = <13>;
+                    gpios = <&gpio 13 1>;
+                };
+                button@16 {
+                    label = "pistomachine key 16";
+                    linux,code = <16>;
+                    gpios = <&gpio 16 1>;
+                };
+                button@17 {
+                    label = "pistomachine key 17";
+                    linux,code = <17>;
+                    gpios = <&gpio 17 1>;
+                };
+                button@18 {
+                    label = "pistomachine key 18";
+                    linux,code = <18>;
+                    gpios = <&gpio 18 1>;
+                };
+                button@19 {
+                    label = "pistomachine key 19";
+                    linux,code = <19>;
+                    gpios = <&gpio 19 1>;
+                };
+                button@20 {
+                    label = "pistomachine key 20";
+                    linux,code = <20>;
+                    gpios = <&gpio 20 1>;
+                };
+                button@21 {
+                    label = "pistomachine key 21";
+                    linux,code = <21>;
+                    gpios = <&gpio 21 1>;
+                };
+                button@22 {
+                    label = "pistomachine key 22";
+                    linux,code = <22>;
+                    gpios = <&gpio 22 1>;
+                };
+                button@23 {
+                    label = "pistomachine key 23";
+                    linux,code = <23>;
+                    gpios = <&gpio 23 1>;
+                };
+                button@24 {
+                    label = "pistomachine key 24";
+                    linux,code = <24>;
+                    gpios = <&gpio 24 1>;
+                };
+                button@25 {
+                    label = "pistomachine key 25";
+                    linux,code = <25>;
+                    gpios = <&gpio 25 1>;
+                };
+                button@26 {
+                    label = "pistomachine key 26";
+                    linux,code = <26>;
+                    gpios = <&gpio 26 1>;
+                };
+
+            };
+        };
+    };
+};
+
