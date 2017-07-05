@@ -1,0 +1,11 @@
+[Unit]
+Description=pistomachine-gpio GPIO end
+
+[Service]
+Type=simple
+ExecStartPre=/usr/sbin/stty -F /dev/ttyAMA0 115200
+ExecStartPre=-/usr/sbin/setserial /dev/ttyAMA0 low_latency
+ExecStart=/usr/sbin/bash -c 'exec /usr/bin/pistomachine-gpio-serial < "/dev/input/by-path/platform-soc:pistomachine-event" > /dev/ttyAMA0'
+
+[Install]
+WantedBy=multi-user.target

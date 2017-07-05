@@ -8,7 +8,7 @@
         target = <&gpio>;
         __overlay__ {
             pistomachine_pin: pistomachine_pin {
-                brcm,pins = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 16 17 18 19 20 21 22 23 24 25 26>; 
+                brcm,pins = <0 1 2 3 4 5 6 7 8 9 10 11 12 13 16 17 18 19 20 21 22 23 24 25 26 27>; 
                 brcm,function = <0>;
                 brcm,pull = <2>;
             };
@@ -150,6 +150,11 @@
                     label = "pistomachine key 26";
                     linux,code = <26>;
                     gpios = <&gpio 26 1>;
+                };
+                button@27 {
+                    label = "pistomachine key 27";
+                    linux,code = <27>;
+                    gpios = <&gpio 27 1>;
                 };
 
             };

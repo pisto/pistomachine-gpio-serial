@@ -1,0 +1,11 @@
+[Unit]
+Description=pistomachine-gpio host end
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/stty -F /dev/ttyUSB0 115200
+ExecStartPre=-/usr/bin/setserial /dev/ttyUSB0 low_latency
+ExecStart=/usr/bin/bash -c 'exec /usr/bin/pistomachine-gpio-serial -u /dev/uinput < /dev/ttyUSB0'
+
+[Install]
+WantedBy=multi-user.target

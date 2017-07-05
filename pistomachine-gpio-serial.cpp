@@ -78,7 +78,7 @@ int main(int argc, char** argv) try {
 		ev[1].code = SYN_REPORT;
 		unsigned char in;
 		while(int r = TEMP_FAILURE_RETRY(read(STDIN_FILENO, &in, 1))){
-			if(r != sizeof(ev)) throw "reading serial";
+			if(r != 1) throw "reading serial";
 			ev[0].value = !!(in & 0x80);
 			in &= ~0x80;
 			if(!in) continue;
