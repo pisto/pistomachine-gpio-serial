@@ -73,18 +73,17 @@ int main(int argc, char** argv) try {
 		}
 	};
 
-	try{
+	try {
 		if(uinputfile == ""){
 			set_serial_mode(STDOUT_FILENO);
 			input_event ev;
 			while(int r = read(STDIN_FILENO, (char*)&ev, sizeof(ev))){
 				if(r != sizeof(ev)) throw "reading device";
 				if(ev.type != EV_KEY || !ev.code || ev.code >= 128) continue;
-				char over_serial = ev.code | (ev.value * 0x80);
+				unsigned char over_serial = ev.code | (!!ev.value * 0x80);
 				if(TEMP_FAILURE_RETRY(write(STDOUT_FILENO, &over_serial, 1)) != 1) throw "piping to serial";
 			}
-		}
-		else {
+		} else {
 			set_serial_mode(STDIN_FILENO);
 			int vkeyb = open(uinputfile.c_str(), O_WRONLY);
 			if(vkeyb == -1) throw "open uinput file";
@@ -112,7 +111,7 @@ int main(int argc, char** argv) try {
 				if(write(vkeyb, &ev, sizeof(ev)) != sizeof(ev)) throw "event generation";
 			}
 		}
-	}catch(const char* at){
+	} catch(const char* at){
 		throw runtime_error(string(at) + " (" + strerror(errno) + ")");
 	}
 
