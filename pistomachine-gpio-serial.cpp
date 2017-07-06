@@ -44,7 +44,7 @@ int main(int argc, char** argv) try {
 		for(auto& ms: mappings_arg){
 			smatch match;
 			if(!regex_match(ms, match, map_regex)) throw invalid_argument("Invalid format for mapping " + ms);
-			int from = stoi(match[0]), to = stoi(match[1]);
+			int from = stoi(match[1]), to = stoi(match[2]);
 			if(!to || !from || from >= 128) throw invalid_argument("Invalid mapping");
 			mappings[from] = to;
 		}

@@ -3,7 +3,7 @@ Description=pistomachine-gpio host end
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/bash -c 'exec /usr/bin/pistomachine-gpio-serial -u /dev/uinput < /dev/ttyUSB0'
+ExecStart=/usr/bin/bash -c 'exec /usr/bin/pistomachine-gpio-serial -u /dev/uinput -m 17:103 -m 10:106 -m 22:108 -m 27:105 -m 9:28 -m 11:15 -m 12:1 -m 20:18 -m 7:25 -m 25:30 -m 8:17 -m 100:33 -m 4:37 -m 21:32 -m 6:21 -m 5:36 -m 18:49 -m 16:34 -m 1:16 -m 13:44 -m 26:47 < /dev/ttyUSB0'
 
 [Install]
 WantedBy=multi-user.target
