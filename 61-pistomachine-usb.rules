@@ -1,0 +1,1 @@
+KERNEL=="ttyUSB0", TAG+="systemd", ENV{SYSTEMD_WANTS}+="pistomachine-gpio-recv.service"
