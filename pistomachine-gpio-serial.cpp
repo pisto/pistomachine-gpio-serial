@@ -19,11 +19,12 @@ using namespace boost::program_options;
 
 namespace {
 options_description options("Options for pistomachine-gpio-serial");
-unsigned char mappings[128];
 }
 
 int main(int argc, char** argv) try {
 	string uinputfile, devicename;
+	unsigned char mappings[128];
+	for(int i = 0; i < 128; i++) mappings[i] = i;
 	{
 		vector<string> mappings_arg;
 		options.add_options()
@@ -45,7 +46,7 @@ int main(int argc, char** argv) try {
 			smatch match;
 			if(!regex_match(ms, match, map_regex)) throw invalid_argument("Invalid format for mapping " + ms);
 			int from = stoi(match[1]), to = stoi(match[2]);
-			if(!to || !from || from >= 128) throw invalid_argument("Invalid mapping");
+			if(!from || from >= 128) throw invalid_argument("Invalid mapping");
 			mappings[from] = to;
 		}
 	}
@@ -106,8 +107,8 @@ int main(int argc, char** argv) try {
 				if(r != 1) throw "reading serial";
 				ev[0].value = !!(in & 0x80);
 				in &= ~0x80;
-				if(!in) continue;
-				ev[0].code = mappings[in] ?: in;
+				ev[0].code = mappings[in];
+				if(!ev[0].code) continue;
 				if(write(vkeyb, &ev, sizeof(ev)) != sizeof(ev)) throw "event generation";
 			}
 		}
